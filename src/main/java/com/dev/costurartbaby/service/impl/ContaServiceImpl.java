@@ -5,6 +5,8 @@ import com.dev.costurartbaby.entities.ContaRole;
 import com.dev.costurartbaby.entities.dto.ContaRequest;
 import com.dev.costurartbaby.entities.dto.ContaResponse;
 import com.dev.costurartbaby.entities.dto.ContaUpdate;
+import com.dev.costurartbaby.infra.exception.BusinessException;
+import com.dev.costurartbaby.infra.exception.ResourceNotFoundException;
 import com.dev.costurartbaby.repository.ContaRepository;
 import com.dev.costurartbaby.service.ContaService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +41,7 @@ public class ContaServiceImpl implements ContaService {
     @Transactional(readOnly = true)
     public ContaResponse getContaById(UUID id) {
         var contaEntity = contaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
 
         return new ContaResponse(contaEntity.getId(), contaEntity.getLogin());
     }
@@ -59,7 +61,7 @@ public class ContaServiceImpl implements ContaService {
 
         if (contaRepository.existsByLogin(request.login())) {
             log.warn("Email {} já está em uso", request.login());
-            throw new RuntimeException("Email já está em uso");
+            throw new BusinessException("Email já está em uso");
         }
 
         ContaEntity conta = ContaEntity.builder()
@@ -79,14 +81,14 @@ public class ContaServiceImpl implements ContaService {
         log.info("Atualizando conta com id: {}", id);
 
         var contaEntity = contaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
 
         if (!contaEntity.isEnabled()) {
-            throw new RuntimeException("Conta desativada não pode ser atualizada");
+            throw new BusinessException("Conta desativada não pode ser atualizada");
         }
 
         if (!contaEntity.isAccountNonLocked()) {
-            throw new RuntimeException("Conta bloqueada não pode ser atualizada");
+            throw new BusinessException("Conta bloqueada não pode ser atualizada");
         }
 
         if (contaUpdate.login().isPresent()) {
@@ -94,7 +96,7 @@ public class ContaServiceImpl implements ContaService {
 
             if (!contaEntity.getLogin().equals(novoLogin) &&
                     contaRepository.existsByLogin(novoLogin)) {
-                throw new RuntimeException("Email já está em uso");
+                throw new BusinessException("Email já está em uso");
             }
 
             contaEntity.setLogin(novoLogin);
@@ -112,7 +114,7 @@ public class ContaServiceImpl implements ContaService {
     @Transactional
     public void deleteConta(UUID id){
         var contaEntity = contaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
         log.info("Deletando conta com login: {}", contaEntity.getLogin());
         contaRepository.delete(contaEntity);
         log.info("Conta {} deletada", id);
@@ -122,7 +124,7 @@ public class ContaServiceImpl implements ContaService {
     @Transactional
     public void desativarConta(UUID id){
         var contaEntity = contaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
         log.info("Desativando conta com login: {}", contaEntity.getLogin());
 
         contaEntity.setEnabled(false);
@@ -134,7 +136,7 @@ public class ContaServiceImpl implements ContaService {
     @Transactional
     public void ativarConta(UUID id){
         var contaEntity = contaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
         log.info("Ativando conta com login: {}", contaEntity.getLogin());
 
         contaEntity.setEnabled(true);
@@ -146,7 +148,7 @@ public class ContaServiceImpl implements ContaService {
     @Transactional
     public void bloquearConta(UUID id){
         var contaEntity = contaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
         log.info("Bloqueando conta com login: {}", contaEntity.getLogin());
 
         contaEntity.setLocked(true);
@@ -158,7 +160,7 @@ public class ContaServiceImpl implements ContaService {
     @Transactional
     public void desbloquearConta(UUID id){
         var contaEntity = contaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada"));
         log.info("Desbloqueando conta com login: {}", contaEntity.getLogin());
 
         contaEntity.setLocked(false);
