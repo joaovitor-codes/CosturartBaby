@@ -2,7 +2,7 @@ package com.dev.costurartbaby.resource;
 
 
 import com.dev.costurartbaby.config.auth.TokenService;
-import com.dev.costurartbaby.entities.ContaEntity;
+import com.dev.costurartbaby.entities.cliente.ContaEntity;
 import com.dev.costurartbaby.entities.dto.AuthenticationDTO;
 import com.dev.costurartbaby.entities.dto.ContaRequest;
 import com.dev.costurartbaby.entities.dto.LoginResponse;

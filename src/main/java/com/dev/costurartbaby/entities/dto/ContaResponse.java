@@ -1,6 +1,6 @@
 package com.dev.costurartbaby.entities.dto;
 
-import com.dev.costurartbaby.entities.ContaEntity;
+import com.dev.costurartbaby.entities.cliente.ContaEntity;
 
 public record ContaResponse(
         java.util.UUID id,

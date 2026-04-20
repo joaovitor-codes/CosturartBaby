@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.dev.costurartbaby.entities.ContaEntity;
+import com.dev.costurartbaby.entities.cliente.ContaEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

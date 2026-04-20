@@ -1,4 +1,4 @@
-package com.dev.costurartbaby.infra.exception;
+package com.dev.costurartbaby.config.exception;
 
 import com.dev.costurartbaby.entities.dto.ErroResponse;
 import jakarta.servlet.http.HttpServletRequest;

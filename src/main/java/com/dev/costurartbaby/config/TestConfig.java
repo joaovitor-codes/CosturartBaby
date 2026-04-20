@@ -1,7 +1,7 @@
 package com.dev.costurartbaby.config;
 
-import com.dev.costurartbaby.entities.ContaEntity;
-import com.dev.costurartbaby.entities.ContaRole;
+import com.dev.costurartbaby.entities.cliente.ContaEntity;
+import com.dev.costurartbaby.entities.cliente.ContaRole;
 import com.dev.costurartbaby.repository.ContaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

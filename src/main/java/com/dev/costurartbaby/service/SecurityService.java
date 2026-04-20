@@ -1,6 +1,6 @@
 package com.dev.costurartbaby.service;
 
-import com.dev.costurartbaby.entities.ContaEntity;
+import com.dev.costurartbaby.entities.cliente.ContaEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 

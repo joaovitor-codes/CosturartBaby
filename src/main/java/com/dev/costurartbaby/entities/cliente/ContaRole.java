@@ -1,4 +1,4 @@
-package com.dev.costurartbaby.entities;
+package com.dev.costurartbaby.entities.cliente;
 
 public enum ContaRole {
     ADMIN("ROLE_ADMIN"),

@@ -1,4 +1,4 @@
-package com.dev.costurartbaby.entities;
+package com.dev.costurartbaby.entities.cliente;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class ContaEntity implements Serializable, UserDetails {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -30,6 +32,8 @@ public class ContaEntity implements Serializable, UserDetails {
     private String login;
     @Column(nullable = false)
     private String senha;
+    @OneToOne(mappedBy = "conta")
+    private ClienteEntity cliente;
     @Enumerated(EnumType.STRING)
     private ContaRole role;
     private boolean locked = false;

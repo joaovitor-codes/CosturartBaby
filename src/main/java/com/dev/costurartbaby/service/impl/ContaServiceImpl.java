@@ -1,12 +1,12 @@
 package com.dev.costurartbaby.service.impl;
 
-import com.dev.costurartbaby.entities.ContaEntity;
-import com.dev.costurartbaby.entities.ContaRole;
+import com.dev.costurartbaby.entities.cliente.ContaEntity;
+import com.dev.costurartbaby.entities.cliente.ContaRole;
 import com.dev.costurartbaby.entities.dto.ContaRequest;
 import com.dev.costurartbaby.entities.dto.ContaResponse;
 import com.dev.costurartbaby.entities.dto.ContaUpdate;
-import com.dev.costurartbaby.infra.exception.BusinessException;
-import com.dev.costurartbaby.infra.exception.ResourceNotFoundException;
+import com.dev.costurartbaby.config.exception.BusinessException;
+import com.dev.costurartbaby.config.exception.ResourceNotFoundException;
 import com.dev.costurartbaby.repository.ContaRepository;
 import com.dev.costurartbaby.service.ContaService;
 import lombok.extern.slf4j.Slf4j;

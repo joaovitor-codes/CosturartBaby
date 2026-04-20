@@ -1,6 +1,6 @@
 package com.dev.costurartbaby.repository;
 
-import com.dev.costurartbaby.entities.ContaEntity;
+import com.dev.costurartbaby.entities.cliente.ContaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 
