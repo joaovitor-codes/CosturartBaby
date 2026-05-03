@@ -20,6 +20,9 @@ public class ProdutoEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Column(unique = true)
+    private Long yampId;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,8 +31,9 @@ public class ProdutoEntity implements Serializable {
     private BigDecimal preco;
     private int estoque;
     private String dimensoes;
+    private String imagemUrl;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoria_id")
     private CategoriaEntity categoria;
 }
