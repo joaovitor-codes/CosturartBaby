@@ -20,8 +20,11 @@ public class ProdutoEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Column(unique = true)
-    private Long yampId;
+    @Column(name = "yamp_id", unique = true)
+    private Long yampiProductId;
+
+    @Column(name = "yampi_sku_id", unique = true)
+    private Long yampiSkuId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +36,7 @@ public class ProdutoEntity implements Serializable {
     private String dimensoes;
     private String imagemUrl;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "categoria_id")
     private CategoriaEntity categoria;
 }

@@ -29,6 +29,14 @@ public class PedidoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(unique = true)
+    private Long yampiOrderId;
+
+    @Column(unique = true)
+    private Long yampiPaymentLinkId;
+
+    private String yampiPaymentLinkUrl;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private ClienteEntity cliente;

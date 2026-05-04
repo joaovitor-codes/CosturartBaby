@@ -5,7 +5,8 @@ import java.math.BigDecimal;
 
 public record ProdutoResponse(
     Long id,
-    Long yampId,
+    Long yampiProductId,
+    Long yampiSkuId,
     String nome,
     String descricao,
     BigDecimal preco,
@@ -16,7 +17,8 @@ public record ProdutoResponse(
     public ProdutoResponse(ProdutoEntity entity) {
         this(
             entity.getId(),
-            entity.getYampId(),
+            entity.getYampiProductId(),
+            entity.getYampiSkuId(),
             entity.getNome(),
             entity.getDescricao(),
             entity.getPreco(),
