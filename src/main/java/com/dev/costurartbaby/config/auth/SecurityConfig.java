@@ -2,6 +2,7 @@ package com.dev.costurartbaby.config.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -31,6 +32,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/webhooks/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/contas/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/produtos/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/produtos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/produtos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/produtos/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)

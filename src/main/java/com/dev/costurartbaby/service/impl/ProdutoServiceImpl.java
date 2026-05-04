@@ -172,6 +172,16 @@ public class ProdutoServiceImpl implements ProdutoService {
     public ProdutoResponse createProduto(ProdutoRequest request) {
         log.info("Criando produto: {}", request);
 
+        if (request.categoriaId() == null) {
+            log.warn("categoriaId não informado");
+            throw new BusinessException("categoriaId é obrigatório");
+        }
+
+        if (request.categoriaId() == null) {
+            log.warn("categoriaId não informado para PUT. produtoId={}", request.categoriaId());
+            throw new BusinessException("categoriaId é obrigatório");
+        }
+
         CategoriaEntity categoria = categoriaRepository.findById(request.categoriaId())
                 .orElseThrow(() -> {
                     log.warn("Categoria não encontrada: {}", request.categoriaId());
